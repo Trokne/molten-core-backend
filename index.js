@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path')
+const crypto = require('crypto')
 const PORT = process.env.PORT || 5000
+const secretKey = 'sSM8niDNLHRatWBBaqj-I'
 
 express()
   .use(express.json())
@@ -10,7 +12,8 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .post("/items", (req, res, next) => {
     const body = req.body;
-    if (req.authorization === 'Signature d9c5eafbc0ee8866dbf7d95dd84f87b09cf862ab') {
+    const signature = 'Signature ' + crypto.createHash('sha1').update(JSON.stringify(body) + secretKey).digest('hex');
+    if (req.authorization !== signature) {
       res.statusMessage = 'Bad request';
       res.status(400);
       res.json({
