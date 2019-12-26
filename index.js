@@ -1,11 +1,11 @@
-import express, { json, static } from 'express';
-import { join } from 'path';
+const express = require('express')
+const path = require('path')
 const PORT = process.env.PORT || 5000
 
 express()
-  .use(json())
-  .use(static(join(__dirname, 'public')))
-  .set('views', join(__dirname, 'views'))
+  .use(express.json())
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post("/items", (req, res, next) => {
