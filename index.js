@@ -11,25 +11,25 @@ express()
   .post("/items", (req, res, next) => {
     const body = req.body;
     if (body.notification_type == "user_validation") {
-        if (body.user.id === 12) {
+        if (body.user.id === "12") {
           res.status(200);
           res.send();
         }
         else { 
           res.statusMessage = 'INVALID USER';
           res.status(404);
-          res.send();
+          res.send('INVALID USER');
       }
     }
 
     else if (body.notification_type == "payment") {
-      if (body.user.id === 12) {
+      if (body.user.id === "12") {
         res.status(200);
         res.send();
       }
       else { 
         res.status(404);
-        res.send();
+        res.send('INVALID USER');
       }
     }
     else {
