@@ -10,7 +10,12 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .post("/items", (req, res, next) => {
     const body = req.body;
-    if (body.notification_type == "user_validation") {
+    if (req.authorization === 'Signature a30eaceddaba096ad5a625940109d50a78773cb6') {
+      res.statusMessage = 'INVALID_SIGNATURE';
+      res.status(426);
+      res.send();
+    }
+    else if (body.notification_type == "user_validation") {
         if (body.user.id === "12") {
           res.status(200);
           res.send();
