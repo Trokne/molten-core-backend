@@ -18,7 +18,7 @@ express()
         else { 
           res.statusMessage = 'INVALID_USER';
           res.status(425);
-          res.send('INVALID_USER');
+          res.send();
       }
     }
 
@@ -34,6 +34,7 @@ express()
       }
     }
     else {
+      res.statusMessage = 'NOT EXISTS';
       res.status(404);
       res.send();
     }
