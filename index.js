@@ -15,6 +15,7 @@ express()
     if (req.notification_type == "user_validation") {
         if (req.user.id === 1 || req.user.id === 2 || req.user.id === 12) {
           res.status(200);
+          res.json('');
           return;
         }
         else { 
@@ -27,13 +28,14 @@ express()
     if (req.notification_type == "payment") {
       if (req.user.id === 1 || req.user.id === 2 || req.user.id === 12) {
         res.status(200);
+        res.json('');
+        return;
       }
       else { 
         res.status(404);
         res.json('INVALID USER');
+        return;
       }
-
-    
-  }
+    }
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
