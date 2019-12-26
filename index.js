@@ -16,9 +16,9 @@ express()
           res.send();
         }
         else { 
-          res.statusMessage = 'INVALID USER';
+          res.statusMessage = 'INVALID_USER';
           res.status(425);
-          res.send('INVALID USER');
+          res.send('INVALID_USER');
       }
     }
 
@@ -28,8 +28,9 @@ express()
         res.send();
       }
       else { 
+        res.statusMessage = 'INVALID_USER';
         res.status(425);
-        res.send('INVALID USER');
+        res.send('INVALID_USER');
       }
     }
     else {
