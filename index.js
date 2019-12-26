@@ -13,28 +13,28 @@ express()
     if (body.notification_type == "user_validation") {
         if (body.user.id === 12) {
           res.status(200);
-          res.json('');
+          res.send();
         }
         else { 
           res.statusMessage = 'INVALID USER';
           res.status(404);
-          res.json('');
+          res.send();
       }
     }
 
     else if (body.notification_type == "payment") {
       if (body.user.id === 12) {
         res.status(200);
-        res.json('');
+        res.send();
       }
       else { 
         res.status(404);
-        res.json('');
+        res.send();
       }
     }
     else {
       res.status(404);
-      res.json('');
+      res.send();
     }
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
