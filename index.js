@@ -22,7 +22,7 @@ express()
       }
     }
 
-    if (body.notification_type == "payment") {
+    else if (body.notification_type == "payment") {
       if (body.user.id === 12) {
         res.status(200);
         res.json('');
@@ -32,7 +32,9 @@ express()
         res.json('');
       }
     }
-    res.status(404);
-    res.json('');
+    else {
+      res.status(404);
+      res.json('');
+    }
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
