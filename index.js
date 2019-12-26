@@ -13,7 +13,7 @@ express()
   .post("/items", (req, res, next) => {
     const body = req.body;
     const signature = 'Signature ' + crypto.createHash('sha1').update(JSON.stringify(body) + secretKey).digest('hex');
-    res.send(req.authorization + '\n' + signature);
+    res.send(req);
     return;
     if (req.authorization !== signature) {
       res.statusMessage = 'Bad request';
