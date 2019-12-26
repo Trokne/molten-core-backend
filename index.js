@@ -14,13 +14,11 @@ express()
         if (body.user.id === 12) {
           res.status(200);
           res.json('');
-          next();
         }
         else { 
           res.statusMessage = 'INVALID USER';
           res.status(404);
           res.json('');
-          next();
       }
     }
 
@@ -28,16 +26,13 @@ express()
       if (body.user.id === 12) {
         res.status(200);
         res.json('');
-        next();
       }
       else { 
         res.status(404);
         res.json('');
-        next();
       }
     }
     res.status(404);
     res.json('');
-    next();
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
