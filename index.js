@@ -3,38 +3,33 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 
 express()
+  .use(express.json())
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  // .get("/items", (req, res, next) => {
-  //   res.status(204);
-  //   res.json('');
-  // })
   .post("/items", (req, res, next) => {
-    if (req.notification_type == "user_validation") {
-        if (req.user.id === 1 || req.user.id === 2 || req.user.id === 12) {
+    const body = req.body;
+    if (body.notification_type == "user_validation") {
+        if (body.user.id === 12) {
           res.status(200);
-          res.json('');
-          return;
+          res.send('');
         }
         else { 
+          res.statusMessage = 'INVALID USER';
           res.status(404);
-          res.json('INVALID USER');
-          return;
+          res.send('');
       }
     }
 
-    if (req.notification_type == "payment") {
-      if (req.user.id === 1 || req.user.id === 2 || req.user.id === 12) {
+    if (body.notification_type == "payment") {
+      if (body.user.id === 12) {
         res.status(200);
-        res.json('');
-        return;
+        res.send('');
       }
       else { 
         res.status(404);
-        res.json('INVALID USER');
-        return;
+        res.send('');
       }
     }
   })
