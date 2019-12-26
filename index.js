@@ -12,7 +12,7 @@ express()
     const body = req.body;
     if (req.authorization === 'Signature a30eaceddaba096ad5a625940109d50a78773cb6') {
       res.statusMessage = 'INVALID_SIGNATURE';
-      res.status(426);
+      res.status(400);
       res.send();
     }
     else if (body.notification_type == "user_validation") {
@@ -22,8 +22,8 @@ express()
         }
         else { 
           res.statusMessage = 'INVALID_USER';
-          res.status(425);
-          res.send();
+          res.status(400);
+          res.send('Invalid user');
       }
     }
 
@@ -34,8 +34,8 @@ express()
       }
       else { 
         res.statusMessage = 'INVALID_USER';
-        res.status(425);
-        res.send('INVALID_USER');
+        res.status(400);
+        res.send('Invalid user');
       }
     }
     else {
