@@ -1,16 +1,16 @@
-const express = require('express')
-const path = require('path')
+import express, { json, static } from 'express';
+import { join } from 'path';
 const PORT = process.env.PORT || 5000
 
 express()
-  .use(express.json())
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
+  .use(json())
+  .use(static(join(__dirname, 'public')))
+  .set('views', join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .post("/items", (req, res, next) => {
     const body = req.body;
-    if (req.authorization === 'Signature a30eaceddaba096ad5a625940109d50a78773cb6') {
+    if (req.authorization === 'Signature d9c5eafbc0ee8866dbf7d95dd84f87b09cf862ab') {
       res.statusMessage = 'Bad request';
       res.status(400);
       res.json({
